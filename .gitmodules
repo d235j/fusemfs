@@ -1,0 +1,3 @@
+[submodule "libres"]
+	path = libres
+	url = git@github.com:zydeco/libres.git
