@@ -5,10 +5,10 @@ AR = ar
 LIBMFS_DIR = libmfs
 LIBRES_DIR = libres
 CFLAGS = `pkg-config fuse --cflags` -std=c99 -I. -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast -Wno-multichar
-LDFLAGS = `pkg-config fuse --libs` $(LIBMFS_DIR)/mfs.o $(LIBRES_DIR)/res.o
+LDFLAGS = `pkg-config fuse --libs` -L$(LIBMFS_DIR) -L$(LIBRES_DIR) -lmfs -lres
 
 all: fusemfs.c fusemfs.h libmfs-lib libres-lib
-	$(CC) $(CFLAGS) $(LDFLAGS) fusemfs.c -o $(PROD)
+	$(CC) $(CFLAGS) fusemfs.c $(LDFLAGS) -o $(PROD)
 
 libmfs-lib:
 	@make -eC $(LIBMFS_DIR)

@@ -17,10 +17,10 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#define __USE_BSD
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#define __USE_BSD // linux strdup
 #include <string.h>
 #include <strings.h>
 #include <unistd.h>
