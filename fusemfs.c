@@ -17,6 +17,9 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#if defined(__APPLE__)
+#define _DARWIN_USE_64_BIT_INODE 1
+#endif
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -171,14 +174,17 @@ int main(int argc, char *argv[])
     
     // MacFUSE options
     #if defined(__APPLE__)
-    fuse_opt_add_arg(&args, "-o");
-    char volnameOption[128] = "volname=";
-    mfs_to_utf8(_fusemfs_vol->name, volnameOption+8, 120);
+    char volnameOption[128] = "-ovolname=";
+    mfs_to_utf8(_fusemfs_vol->name, volnameOption+10, 120);
     fuse_opt_add_arg(&args, volnameOption);
-    fuse_opt_add_arg(&args, "-o");
-    fuse_opt_add_arg(&args, "fstypename=MFS");
-    fuse_opt_add_arg(&args, "-o");
-    fuse_opt_add_arg(&args, "local");
+    fuse_opt_add_arg(&args, "-ofstypename=MFS");
+    fuse_opt_add_arg(&args, "-olocal");
+    char *fsnameOption = malloc(strlen(options.path)+10);
+    strcpy(fsnameOption, "-ofsname=");
+    strcat(fsnameOption, options.path);
+    fuse_opt_add_arg(&args, fsnameOption);
+    free(fsnameOption);
+    fuse_opt_add_arg(&args, "-ovolicon=/System/Library/Extensions/IOSCSIArchitectureModelFamily.kext/Contents/Resources/Floppy.icns");
     #endif
     
     // run fuse
@@ -186,6 +192,7 @@ int main(int argc, char *argv[])
     
     mfs_vclose(_fusemfs_vol);
     iconv_close(_fusemfs_iconv);
+    iconv_close(_fusemfs_vnoci);
     fuse_opt_free_args(&args);
     return ret;
 }
@@ -374,12 +381,13 @@ static int fusemfs_read (const char *path, char *buf, size_t size, off_t offset,
 }
 
 static int fusemfs_statfs (const char *path, struct statvfs *stbuf) {
-    bzero(stbuf, sizeof(struct statvfs));    
+    bzero(stbuf, sizeof(struct statvfs));
     stbuf->f_bsize = (unsigned long)_fusemfs_vol->mdb.drAlBlkSiz;
     stbuf->f_frsize = (unsigned long)_fusemfs_vol->mdb.drAlBlkSiz;
     stbuf->f_blocks = (fsblkcnt_t)_fusemfs_vol->mdb.drNmAlBlks;
     stbuf->f_bfree = stbuf->f_bavail = (fsblkcnt_t)_fusemfs_vol->mdb.drFreeBks;
-    stbuf->f_files = (fsfilcnt_t)_fusemfs_vol->mdb.drNmFls;
+    stbuf->f_files = (fsfilcnt_t)(_fusemfs_vol->mdb.drNmFls + _fusemfs_vol->numFolders + 1);
+    stbuf->f_ffree = stbuf->f_favail = 0;
     stbuf->f_namemax = 255;
     return 0;
 }
