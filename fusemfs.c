@@ -169,8 +169,7 @@ int main(int argc, char *argv[])
     }
     
     // fuse options
-    fuse_opt_add_arg(&args, "-o");
-    fuse_opt_add_arg(&args, "ro");
+    fuse_opt_add_arg(&args, "-oro");
     
     // MacFUSE options
     #if defined(__APPLE__)

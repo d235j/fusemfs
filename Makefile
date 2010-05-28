@@ -4,8 +4,9 @@ CC = gcc
 AR = ar
 LIBMFS_DIR = libmfs
 LIBRES_DIR = libres
-CFLAGS = -arch i386 -arch ppc -arch x86_64 -D__FreeBSD__=10 -D_FILE_OFFSET_BITS=64 -I/usr/local/include/fuse -std=c99 -I. -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast -Wno-multichar
-LDFLAGS = -L/usr/local/lib -lfuse_ino64 -liconv -L$(LIBMFS_DIR) -L$(LIBRES_DIR) -lmfs -lres
+ARCH = -arch i386 -arch x86_64 -arch ppc
+CFLAGS = $(ARCH) -D__FreeBSD__=10 -D_FILE_OFFSET_BITS=64 -I/usr/local/include/fuse -std=c99 -I. -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast -Wno-multichar
+LDFLAGS = -L/usr/lib -liconv -L/usr/local/lib -lfuse_ino64 -L$(LIBMFS_DIR) -L$(LIBRES_DIR) -lmfs -lres
 
 all: fusemfs.c fusemfs.h libmfs-lib libres-lib
 	$(CC) $(CFLAGS) fusemfs.c $(LDFLAGS) -o $(PROD)
