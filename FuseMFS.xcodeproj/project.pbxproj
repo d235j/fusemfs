@@ -1,0 +1,723 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2840F33E11AFEBAB00685619 /* appledouble.h in Headers */ = {isa = PBXBuildFile; fileRef = 2840F33A11AFEBAB00685619 /* appledouble.h */; };
+		2840F33F11AFEBAB00685619 /* fobj.h in Headers */ = {isa = PBXBuildFile; fileRef = 2840F33B11AFEBAB00685619 /* fobj.h */; };
+		2840F34011AFEBAB00685619 /* mfs.c in Sources */ = {isa = PBXBuildFile; fileRef = 2840F33C11AFEBAB00685619 /* mfs.c */; };
+		2840F34111AFEBAB00685619 /* mfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 2840F33D11AFEBAB00685619 /* mfs.h */; };
+		2840F34611AFEBC000685619 /* libmfs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840F33311AFEB9300685619 /* libmfs.a */; };
+		2840F35611AFEBE500685619 /* libres_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2840F35311AFEBE500685619 /* libres_internal.h */; };
+		2840F35711AFEBE500685619 /* res.c in Sources */ = {isa = PBXBuildFile; fileRef = 2840F35411AFEBE500685619 /* res.c */; };
+		2840F35811AFEBE500685619 /* res.h in Headers */ = {isa = PBXBuildFile; fileRef = 2840F35511AFEBE500685619 /* res.h */; };
+		2840F35B11AFEBEA00685619 /* libres.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840F34B11AFEBC700685619 /* libres.a */; };
+		2840F38211AFECCB00685619 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840F38111AFECCB00685619 /* libiconv.dylib */; };
+		2840F39611AFED1600685619 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 2840F39511AFED1600685619 /* util.c */; };
+		2840F3A311AFEE0600685619 /* fusemfs.util in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2840F38E11AFECF400685619 /* fusemfs.util */; };
+		2840F3A811AFEE4F00685619 /* mount_fusemfs in Resources */ = {isa = PBXBuildFile; fileRef = 2840F3A711AFEE4F00685619 /* mount_fusemfs */; };
+		2840F3BB11AFEFA700685619 /* libmfs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840F33311AFEB9300685619 /* libmfs.a */; };
+		2840F3C211AFEFC400685619 /* libres.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840F34B11AFEBC700685619 /* libres.a */; };
+		2840F42711B00B0D00685619 /* fusemfs in Resources */ = {isa = PBXBuildFile; fileRef = 8DD76FB20486AB0100D96B5E /* fusemfs */; };
+		2840F59311B01C7C00685619 /* libfuse_ino64.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840F59211B01C7C00685619 /* libfuse_ino64.dylib */; };
+		FFD708650EE669A60026C014 /* fusemfs.c in Sources */ = {isa = PBXBuildFile; fileRef = FFD708640EE669A60026C014 /* fusemfs.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2840F34411AFEBBC00685619 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2840F33211AFEB9300685619;
+			remoteInfo = mfs;
+		};
+		2840F35911AFEBE800685619 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2840F34A11AFEBC700685619;
+			remoteInfo = res;
+		};
+		2840F3B111AFEF8200685619 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2840F38D11AFECF400685619;
+			remoteInfo = fusemfs.util;
+		};
+		2840F3B311AFEF8400685619 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DD76FA90486AB0100D96B5E;
+			remoteInfo = fusemfs;
+		};
+		2840F3BC11AFEFAA00685619 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2840F33211AFEB9300685619;
+			remoteInfo = mfs;
+		};
+		2840F3BE11AFEFAF00685619 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2840F34A11AFEBC700685619;
+			remoteInfo = res;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2840F3A411AFEE2500685619 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 1;
+			files = (
+				2840F3A311AFEE0600685619 /* fusemfs.util in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DD76FAF0486AB0100D96B5E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2840F32011AFEB5B00685619 /* fusemfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fusemfs.h; sourceTree = "<group>"; };
+		2840F33311AFEB9300685619 /* libmfs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmfs.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2840F33A11AFEBAB00685619 /* appledouble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = appledouble.h; path = libmfs/appledouble.h; sourceTree = "<group>"; };
+		2840F33B11AFEBAB00685619 /* fobj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fobj.h; path = libmfs/fobj.h; sourceTree = "<group>"; };
+		2840F33C11AFEBAB00685619 /* mfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mfs.c; path = libmfs/mfs.c; sourceTree = "<group>"; };
+		2840F33D11AFEBAB00685619 /* mfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mfs.h; path = libmfs/mfs.h; sourceTree = "<group>"; };
+		2840F34B11AFEBC700685619 /* libres.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libres.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2840F35311AFEBE500685619 /* libres_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libres_internal.h; path = libres/libres_internal.h; sourceTree = "<group>"; };
+		2840F35411AFEBE500685619 /* res.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = res.c; path = libres/res.c; sourceTree = "<group>"; };
+		2840F35511AFEBE500685619 /* res.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = res.h; path = libres/res.h; sourceTree = "<group>"; };
+		2840F38111AFECCB00685619 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		2840F38E11AFECF400685619 /* fusemfs.util */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fusemfs.util; sourceTree = BUILT_PRODUCTS_DIR; };
+		2840F39511AFED1600685619 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
+		2840F39C11AFED8300685619 /* fusemfs.fs */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fusemfs.fs; sourceTree = BUILT_PRODUCTS_DIR; };
+		2840F39D11AFED8300685619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2840F3A711AFEE4F00685619 /* mount_fusemfs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mount_fusemfs; sourceTree = "<group>"; };
+		2840F59211B01C7C00685619 /* libfuse_ino64.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfuse_ino64.dylib; path = /usr/local/lib/libfuse_ino64.dylib; sourceTree = "<absolute>"; };
+		8DD76FB20486AB0100D96B5E /* fusemfs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fusemfs; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFD708640EE669A60026C014 /* fusemfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fusemfs.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2840F33111AFEB9300685619 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2840F34911AFEBC700685619 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2840F38C11AFECF400685619 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2840F3BB11AFEFA700685619 /* libmfs.a in Frameworks */,
+				2840F3C211AFEFC400685619 /* libres.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DD76FAD0486AB0100D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2840F35B11AFEBEA00685619 /* libres.a in Frameworks */,
+				2840F34611AFEBC000685619 /* libmfs.a in Frameworks */,
+				2840F38211AFECCB00685619 /* libiconv.dylib in Frameworks */,
+				2840F59311B01C7C00685619 /* libfuse_ino64.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* fusemfs */ = {
+			isa = PBXGroup;
+			children = (
+				2840F3A611AFEE3100685619 /* FS Bundle */,
+				08FB7795FE84155DC02AAC07 /* fusemfs */,
+				2840F33611AFEB9E00685619 /* mfs */,
+				2840F34E11AFEBD700685619 /* res */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+				2840F38111AFECCB00685619 /* libiconv.dylib */,
+				2840F59211B01C7C00685619 /* libfuse_ino64.dylib */,
+			);
+			name = fusemfs;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* fusemfs */ = {
+			isa = PBXGroup;
+			children = (
+				2840F32011AFEB5B00685619 /* fusemfs.h */,
+				FFD708640EE669A60026C014 /* fusemfs.c */,
+			);
+			name = fusemfs;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76FB20486AB0100D96B5E /* fusemfs */,
+				2840F33311AFEB9300685619 /* libmfs.a */,
+				2840F34B11AFEBC700685619 /* libres.a */,
+				2840F38E11AFECF400685619 /* fusemfs.util */,
+				2840F39C11AFED8300685619 /* fusemfs.fs */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2840F33611AFEB9E00685619 /* mfs */ = {
+			isa = PBXGroup;
+			children = (
+				2840F33A11AFEBAB00685619 /* appledouble.h */,
+				2840F33B11AFEBAB00685619 /* fobj.h */,
+				2840F33C11AFEBAB00685619 /* mfs.c */,
+				2840F33D11AFEBAB00685619 /* mfs.h */,
+			);
+			name = mfs;
+			sourceTree = "<group>";
+		};
+		2840F34E11AFEBD700685619 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				2840F35311AFEBE500685619 /* libres_internal.h */,
+				2840F35411AFEBE500685619 /* res.c */,
+				2840F35511AFEBE500685619 /* res.h */,
+			);
+			name = res;
+			sourceTree = "<group>";
+		};
+		2840F3A611AFEE3100685619 /* FS Bundle */ = {
+			isa = PBXGroup;
+			children = (
+				2840F39511AFED1600685619 /* util.c */,
+				2840F39D11AFED8300685619 /* Info.plist */,
+				2840F3A711AFEE4F00685619 /* mount_fusemfs */,
+			);
+			name = "FS Bundle";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2840F32F11AFEB9300685619 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2840F33E11AFEBAB00685619 /* appledouble.h in Headers */,
+				2840F33F11AFEBAB00685619 /* fobj.h in Headers */,
+				2840F34111AFEBAB00685619 /* mfs.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2840F34711AFEBC700685619 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2840F35611AFEBE500685619 /* libres_internal.h in Headers */,
+				2840F35811AFEBE500685619 /* res.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2840F33211AFEB9300685619 /* mfs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2840F33711AFEB9E00685619 /* Build configuration list for PBXNativeTarget "mfs" */;
+			buildPhases = (
+				2840F32F11AFEB9300685619 /* Headers */,
+				2840F33011AFEB9300685619 /* Sources */,
+				2840F33111AFEB9300685619 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mfs;
+			productName = mfs;
+			productReference = 2840F33311AFEB9300685619 /* libmfs.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		2840F34A11AFEBC700685619 /* res */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2840F34F11AFEBD700685619 /* Build configuration list for PBXNativeTarget "res" */;
+			buildPhases = (
+				2840F34711AFEBC700685619 /* Headers */,
+				2840F34811AFEBC700685619 /* Sources */,
+				2840F34911AFEBC700685619 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = res;
+			productName = res;
+			productReference = 2840F34B11AFEBC700685619 /* libres.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		2840F38D11AFECF400685619 /* fusemfs.util */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2840F39411AFECFE00685619 /* Build configuration list for PBXNativeTarget "fusemfs.util" */;
+			buildPhases = (
+				2840F38B11AFECF400685619 /* Sources */,
+				2840F38C11AFECF400685619 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2840F3BD11AFEFAA00685619 /* PBXTargetDependency */,
+				2840F3BF11AFEFAF00685619 /* PBXTargetDependency */,
+			);
+			name = fusemfs.util;
+			productName = fusemfs.util;
+			productReference = 2840F38E11AFECF400685619 /* fusemfs.util */;
+			productType = "com.apple.product-type.tool";
+		};
+		2840F39B11AFED8300685619 /* FS Bundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2840F3A011AFED8400685619 /* Build configuration list for PBXNativeTarget "FS Bundle" */;
+			buildPhases = (
+				2840F39811AFED8300685619 /* Resources */,
+				2840F3A411AFEE2500685619 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2840F3B411AFEF8400685619 /* PBXTargetDependency */,
+				2840F3B211AFEF8200685619 /* PBXTargetDependency */,
+			);
+			name = "FS Bundle";
+			productName = "FS Bundle";
+			productReference = 2840F39C11AFED8300685619 /* fusemfs.fs */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8DD76FA90486AB0100D96B5E /* fusemfs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "fusemfs" */;
+			buildPhases = (
+				8DD76FAB0486AB0100D96B5E /* Sources */,
+				8DD76FAD0486AB0100D96B5E /* Frameworks */,
+				8DD76FAF0486AB0100D96B5E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2840F34511AFEBBC00685619 /* PBXTargetDependency */,
+				2840F35A11AFEBE800685619 /* PBXTargetDependency */,
+			);
+			name = fusemfs;
+			productInstallPath = "$(HOME)/bin";
+			productName = fusemfs;
+			productReference = 8DD76FB20486AB0100D96B5E /* fusemfs */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "FuseMFS" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* fusemfs */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DD76FA90486AB0100D96B5E /* fusemfs */,
+				2840F33211AFEB9300685619 /* mfs */,
+				2840F34A11AFEBC700685619 /* res */,
+				2840F38D11AFECF400685619 /* fusemfs.util */,
+				2840F39B11AFED8300685619 /* FS Bundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2840F39811AFED8300685619 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2840F42711B00B0D00685619 /* fusemfs in Resources */,
+				2840F3A811AFEE4F00685619 /* mount_fusemfs in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2840F33011AFEB9300685619 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2840F34011AFEBAB00685619 /* mfs.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2840F34811AFEBC700685619 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2840F35711AFEBE500685619 /* res.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2840F38B11AFECF400685619 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2840F39611AFED1600685619 /* util.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DD76FAB0486AB0100D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFD708650EE669A60026C014 /* fusemfs.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2840F34511AFEBBC00685619 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2840F33211AFEB9300685619 /* mfs */;
+			targetProxy = 2840F34411AFEBBC00685619 /* PBXContainerItemProxy */;
+		};
+		2840F35A11AFEBE800685619 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2840F34A11AFEBC700685619 /* res */;
+			targetProxy = 2840F35911AFEBE800685619 /* PBXContainerItemProxy */;
+		};
+		2840F3B211AFEF8200685619 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2840F38D11AFECF400685619 /* fusemfs.util */;
+			targetProxy = 2840F3B111AFEF8200685619 /* PBXContainerItemProxy */;
+		};
+		2840F3B411AFEF8400685619 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DD76FA90486AB0100D96B5E /* fusemfs */;
+			targetProxy = 2840F3B311AFEF8400685619 /* PBXContainerItemProxy */;
+		};
+		2840F3BD11AFEFAA00685619 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2840F33211AFEB9300685619 /* mfs */;
+			targetProxy = 2840F3BC11AFEFAA00685619 /* PBXContainerItemProxy */;
+		};
+		2840F3BF11AFEFAF00685619 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2840F34A11AFEBC700685619 /* res */;
+			targetProxy = 2840F3BE11AFEFAF00685619 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB928608733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/build/Debug\"";
+				OTHER_CFLAGS = (
+					"-DDEBUG",
+					"-D_FILE_OFFSET_BITS=64",
+					"-D__FreeBSD__=10",
+				);
+				PRODUCT_NAME = fusemfs;
+			};
+			name = Debug;
+		};
+		1DEB928708733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/build/Debug\"";
+				OTHER_CFLAGS = (
+					"-D_FILE_OFFSET_BITS=64",
+					"-D__FreeBSD__=10",
+				);
+				PRODUCT_NAME = fusemfs;
+			};
+			name = Release;
+		};
+		1DEB928A08733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+				VALID_ARCHS = "i386 ppc";
+			};
+			name = Debug;
+		};
+		1DEB928B08733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+				VALID_ARCHS = "i386 ppc";
+			};
+			name = Release;
+		};
+		2840F33411AFEB9300685619 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)";
+				INSTALL_PATH = /usr/local/lib;
+				OTHER_CFLAGS = "-DUSE_LIBRES";
+				PREBINDING = NO;
+				PRODUCT_NAME = mfs;
+			};
+			name = Debug;
+		};
+		2840F33511AFEB9300685619 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)";
+				INSTALL_PATH = /usr/local/lib;
+				OTHER_CFLAGS = "-DUSE_LIBRES";
+				PREBINDING = NO;
+				PRODUCT_NAME = mfs;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		2840F34C11AFEBC700685619 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/lib;
+				OTHER_CFLAGS = "-DUSE_LIBRES";
+				PREBINDING = NO;
+				PRODUCT_NAME = res;
+			};
+			name = Debug;
+		};
+		2840F34D11AFEBC700685619 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/lib;
+				OTHER_CFLAGS = "-DUSE_LIBRES";
+				PREBINDING = NO;
+				PRODUCT_NAME = res;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		2840F39011AFECF500685619 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_CFLAGS = "-DDEBUG";
+				PREBINDING = NO;
+				PRODUCT_NAME = fusemfs.util;
+			};
+			name = Debug;
+		};
+		2840F39111AFECF500685619 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)";
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = fusemfs.util;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		2840F39E11AFED8300685619 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = fusemfs;
+				WRAPPER_EXTENSION = fs;
+			};
+			name = Debug;
+		};
+		2840F39F11AFED8300685619 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = fusemfs;
+				WRAPPER_EXTENSION = fs;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "fusemfs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928608733DD80010E9CD /* Debug */,
+				1DEB928708733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "FuseMFS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928A08733DD80010E9CD /* Debug */,
+				1DEB928B08733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2840F33711AFEB9E00685619 /* Build configuration list for PBXNativeTarget "mfs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2840F33411AFEB9300685619 /* Debug */,
+				2840F33511AFEB9300685619 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2840F34F11AFEBD700685619 /* Build configuration list for PBXNativeTarget "res" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2840F34C11AFEBC700685619 /* Debug */,
+				2840F34D11AFEBC700685619 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2840F39411AFECFE00685619 /* Build configuration list for PBXNativeTarget "fusemfs.util" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2840F39011AFECF500685619 /* Debug */,
+				2840F39111AFECF500685619 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2840F3A011AFED8400685619 /* Build configuration list for PBXNativeTarget "FS Bundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2840F39E11AFED8300685619 /* Debug */,
+				2840F39F11AFED8300685619 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

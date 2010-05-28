@@ -33,12 +33,18 @@
 #include <libgen.h>
 #include "fusemfs.h"
 
+#ifdef DEBUG
+#define dprintf(args...) fprintf(stderr, args)
+#else
+#define dprintf(args...)
+#endif
+
 static struct {
     char    *path;
-    int     use_folders;
+    int     flat;
 } options = {
-    .path =         NULL,
-    .use_folders =  0
+    .path =  NULL,
+    .flat =  0
 };
 
 static MFSVolume *_fusemfs_vol;
@@ -48,7 +54,7 @@ static iconv_t _fusemfs_vnoci;
 enum {
     KEY_VERSION,
     KEY_HELP,
-    KEY_FOLDERS
+    KEY_FLAT
 };
 
 #define FUSEMFS_OPT(t, p, v) { t, offsetof(struct options, p), v }
@@ -60,7 +66,7 @@ static struct fuse_opt fusemfs_opts[] =
     FUSE_OPT_KEY("--version",   KEY_VERSION),
     FUSE_OPT_KEY("-h",          KEY_HELP),
     FUSE_OPT_KEY("--help",      KEY_HELP),
-    FUSE_OPT_KEY("--folders",   KEY_FOLDERS),
+    FUSE_OPT_KEY("--flat",		KEY_FLAT),
     FUSE_OPT_END
 };
 
@@ -71,6 +77,7 @@ static struct fuse_operations fusemfs_ops = {
     .release   = fusemfs_release,
     .read      = fusemfs_read,
     .statfs    = fusemfs_statfs,
+	.init      = fusemfs_init
 };
 
 static int fusemfs_opt_proc(void *data, const char *arg, int key, struct fuse_args *outargs)
@@ -86,10 +93,10 @@ static int fusemfs_opt_proc(void *data, const char *arg, int key, struct fuse_ar
         printf("fuseMFS %s, (c)2008-2009 Jesus A. Alvarez, namedfork.net\n", FUSEMFS_VERSION);
         exit(1);
     case KEY_HELP:
-        printf("usage: fusemfs [--folders] [fuse options] device mountpoint\n");
+        printf("usage: fusemfs [--flat] [fuse options] device mountpoint\n");
         exit(0);
-    case KEY_FOLDERS:
-        options.use_folders = 1;
+    case KEY_FLAT:
+        options.flat = 1;
         return 0;
     }
 }
@@ -103,7 +110,7 @@ char * mfs_to_utf8 (const char * in, char * out, size_t outlen) {
         out = malloc(outlen);
     }
     outleft = outlen-1;
-    iconv(_fusemfs_iconv, (char **restrict)&in, &len, &outp, &outleft);
+    iconv(_fusemfs_iconv, (const char **restrict)&in, &len, &outp, &outleft);
     iconv(_fusemfs_iconv, NULL, NULL, NULL, NULL);
     out[outlen-outleft-1] = '\0';
     
@@ -122,7 +129,7 @@ char * utf8_to_mfs (const char * in) {
     outlen = len+1;
     char * out = malloc(outlen);
     char * outp = out;
-    iconv(_fusemfs_vnoci, (char **restrict)&in, &len, &outp, &outleft);
+    iconv(_fusemfs_vnoci, &in, &len, &outp, &outleft);
     iconv(_fusemfs_vnoci, NULL, NULL, NULL, NULL);
     out[outlen-outleft-1] = '\0';
     
@@ -140,9 +147,18 @@ int main(int argc, char *argv[])
     int ret;
     struct fuse_args args = FUSE_ARGS_INIT(argc, argv);
     
+#ifdef DEBUG
+	freopen("/fusemfs.log", "a", stderr);
+	fprintf(stderr, "fusemfs %d\n", getpid());
+	for(int i=0; i<argc; i++) fprintf(stderr, "%d: %s\n", i, argv[i]);
+#endif
+	
     bzero(&options, sizeof options);
-    if (fuse_opt_parse(&args, &options, fusemfs_opts, fusemfs_opt_proc) == -1) return -1;
-    
+    if (fuse_opt_parse(&args, &options, fusemfs_opts, fusemfs_opt_proc) == -1) {
+		perror("fuse_opt_parse");
+		return -1;
+    }
+	
     // open volume
     if (options.path == NULL) {
         fprintf(stderr, "invalid volume\n");
@@ -150,7 +166,7 @@ int main(int argc, char *argv[])
     }
     
     int mfsflags = 0;
-    if (options.use_folders) mfsflags |= MFS_FOLDERS;
+    if (!options.flat) mfsflags |= MFS_FOLDERS;
     _fusemfs_iconv = iconv_open("UTF-8", "Macintosh");
     if (_fusemfs_iconv == (iconv_t)-1) {
         perror("iconv_open");
@@ -165,12 +181,13 @@ int main(int argc, char *argv[])
     _fusemfs_vol = mfs_vopen(options.path, 0, mfsflags);
     if (_fusemfs_vol == NULL) {
         perror("mfs_vopen");
-        return 1;
+        exit(1);
     }
     
     // fuse options
     fuse_opt_add_arg(&args, "-oro");
-    
+    fuse_opt_add_arg(&args, "-s");
+	
     // MacFUSE options
     #if defined(__APPLE__)
     char volnameOption[128] = "-ovolname=";
@@ -178,6 +195,9 @@ int main(int argc, char *argv[])
     fuse_opt_add_arg(&args, volnameOption);
     fuse_opt_add_arg(&args, "-ofstypename=MFS");
     fuse_opt_add_arg(&args, "-olocal");
+	fuse_opt_add_arg(&args, "-oallow_other");
+	fuse_opt_add_arg(&args, "-odefer_permissions");
+	fuse_opt_add_arg(&args, "-okill_on_unmount");
     char *fsnameOption = malloc(strlen(options.path)+10);
     strcpy(fsnameOption, "-ofsname=");
     strcat(fsnameOption, options.path);
@@ -187,6 +207,7 @@ int main(int argc, char *argv[])
     #endif
     
     // run fuse
+	dprintf("calling fuse_main\n");
     ret = fuse_main(args.argc, args.argv, &fusemfs_ops, NULL);
     
     mfs_vclose(_fusemfs_vol);
@@ -201,8 +222,17 @@ int main(int argc, char *argv[])
 #pragma mark FUSE Callbacks
 #endif
 
+static void * fusemfs_init (struct fuse_conn_info *conn) {
+#ifdef DEBUG
+	freopen("/fusemfs.log", "a", stderr);
+	fprintf(stderr, "fusemfs_init %d\n", getpid()); fflush(stderr);
+#endif
+	return NULL;
+}
+
 static int fusemfs_getattr (const char *path, struct stat *stbuf) {
-    MFSDirectoryRecord *rec;
+	dprintf("getattr %s\n", path);
+	MFSDirectoryRecord *rec;
     MFSFolder *folder;
     int ret = -ENOENT;
     char *fpath = utf8_to_mfs(path);
@@ -215,13 +245,13 @@ static int fusemfs_getattr (const char *path, struct stat *stbuf) {
         ret = 0;
     } else if (rec = mfs_directory_find_name(_fusemfs_vol->directory, fname)) {
         // data fork
-        if ((options.use_folders == 0) || (mfs_path_info(_fusemfs_vol, fpath) == kMFSPathFile)) {
+        if ((options.flat) || (mfs_path_info(_fusemfs_vol, fpath) == kMFSPathFile)) {
             mfs_record_stat(&_fusemfs_vol->mdb, rec, stbuf, kMFSForkData);
             ret = 0;
         }
     } else if ((strncmp(fname, "._", 2) == 0) && (rec = mfs_directory_find_name(_fusemfs_vol->directory, fname+2))) {
         // AppleDouble headerfile
-        if (options.use_folders) {
+		if (!options.flat) {
             memmove(fname, fname+2, strlen(fname)-2);
             fname[strlen(fname)-2] = '\0';
             pathType = mfs_path_info(_fusemfs_vol, fpath);
@@ -234,7 +264,7 @@ static int fusemfs_getattr (const char *path, struct stat *stbuf) {
             mfs_record_stat(&_fusemfs_vol->mdb, rec, stbuf, kMFSForkAppleDouble);
             ret = 0;
         }
-    } else if (options.use_folders && (mfs_path_info(_fusemfs_vol, fpath) == kMFSPathFolder)) {
+    } else if (!options.flat && (mfs_path_info(_fusemfs_vol, fpath) == kMFSPathFolder)) {
         // folder
         folder = mfs_folder_find_name(_fusemfs_vol, fname);
         if (folder) {
@@ -244,10 +274,12 @@ static int fusemfs_getattr (const char *path, struct stat *stbuf) {
     }
     
     free(fpath);
+	dprintf("getattr: %d\n", ret);
     return ret;
 }
 
 static int fusemfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi) {
+	dprintf("readdir %s\n", path);
     MFSDirectoryRecord *rec;
     MFSFolder *dir, *subdir;
     struct stat stbuf;
@@ -263,7 +295,7 @@ static int fusemfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,
         for(i=0; _fusemfs_vol->directory[i]; i++) {
             rec = _fusemfs_vol->directory[i];
             folderID = ntohs(rec->flUsrWds.folder);
-            if (options.use_folders && 
+            if (!options.flat && 
                 (folderID != kMFSFolderRoot) && 
                 (folderID != kMFSFolderDesktop)) 
                 // if using folders, skip files that aren't on the root
@@ -283,7 +315,7 @@ static int fusemfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,
             free(appleDoubleName);
         }
         // subdirectories
-        if (options.use_folders && (dir = mfs_folder_find(_fusemfs_vol, kMFSFolderRoot))) {
+        if (!options.flat && (dir = mfs_folder_find(_fusemfs_vol, kMFSFolderRoot))) {
             for(i = 0; i < _fusemfs_vol->numFolders; i++) {
                 subdir = &_fusemfs_vol->folders[i];
                 if (subdir->fdID == kMFSFolderRoot) continue;
@@ -294,7 +326,7 @@ static int fusemfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,
                 filler(buf, fname, &stbuf, 0);
             }
         }
-    } else if (options.use_folders == 0) {
+    } else if (options.flat) {
         return -ENOENT;
     } else {
         // a folder
@@ -303,7 +335,7 @@ static int fusemfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,
         dir = mfs_folder_find_name(_fusemfs_vol, dirname);
         free(pathdup); free(dirname);
         if (dir == NULL) return -ENOENT;
-        // TODO check that the folder really exists at that path
+        // TODO: check that the folder really exists at that path
         // by constructing folder path and comparing it with the asked one
         
         mfs_folder_stat(dir, &stbuf);
@@ -345,8 +377,9 @@ static int fusemfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,
 
 static int fusemfs_open (const char *path, struct fuse_file_info *fi) {
     // find record and fork
-    // TODO check that path really exists if folders are on
-    char *pathdup = strdup(path);
+    // TODO: check that path really exists if folders are on
+	dprintf("open %s\n", path);
+	char *pathdup = strdup(path);
     char *fname = utf8_to_mfs(basename(pathdup));
     MFSDirectoryRecord *rec = mfs_directory_find_name(_fusemfs_vol->directory, fname);
     free(pathdup);
@@ -368,19 +401,22 @@ static int fusemfs_open (const char *path, struct fuse_file_info *fi) {
 }
 
 static int fusemfs_release (const char *path, struct fuse_file_info *fi) {
-    MFSFork *fk = (MFSFork*)fi->fh;
+	dprintf("close %s\n", path); fflush(stderr);
+	MFSFork *fk = (MFSFork*)fi->fh;
     if (mfs_fkclose(fk) == -1) return (errno*-1);
     fi->fh = 0;
     return 0;
 }
 
 static int fusemfs_read (const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi) {
-    MFSFork *fk = (MFSFork*)fi->fh;
+	dprintf("read %s %d@%d\n", path, size, offset);
+	MFSFork *fk = (MFSFork*)fi->fh;
     return mfs_fkread_at(fk, size, (size_t)offset, (void*)buf);
 }
 
 static int fusemfs_statfs (const char *path, struct statvfs *stbuf) {
-    bzero(stbuf, sizeof(struct statvfs));
+	dprintf("statfs %s\n", path);
+	bzero(stbuf, sizeof(struct statvfs));
     stbuf->f_bsize = (unsigned long)_fusemfs_vol->mdb.drAlBlkSiz;
     stbuf->f_frsize = (unsigned long)_fusemfs_vol->mdb.drAlBlkSiz;
     stbuf->f_blocks = (fsblkcnt_t)_fusemfs_vol->mdb.drNmAlBlks;
@@ -411,7 +447,7 @@ int mfs_record_stat (MFSMasterDirectoryBlock *mdb, MFSDirectoryRecord *rec, stru
 
 int mfs_root_stat (MFSMasterDirectoryBlock *mdb, struct stat *stbuf) {
     bzero(stbuf, sizeof(struct stat));
-    if (options.use_folders) {
+    if (!options.flat) {
         MFSFolder *root = mfs_folder_find(_fusemfs_vol, kMFSFolderRoot);
         stbuf->st_nlink = root->fdSubdirs + 2;
     } else stbuf->st_nlink = 2;

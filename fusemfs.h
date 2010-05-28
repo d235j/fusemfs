@@ -36,6 +36,7 @@ static int fusemfs_open (const char *path, struct fuse_file_info *fi);
 static int fusemfs_read (const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi);
 static int fusemfs_release (const char *path, struct fuse_file_info *);
 static int fusemfs_statfs (const char *path, struct statvfs *buf);
+static void * fusemfs_init (struct fuse_conn_info *conn);
 
 // glue
 int mfs_record_stat (MFSMasterDirectoryBlock *mdb, MFSDirectoryRecord *rec, struct stat *stbuf, int mode);
