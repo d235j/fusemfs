@@ -27,4 +27,4 @@ fi
 shift
 done
 
-/System/Library/Filesystems/fusemfs.fs/Contents/Resources/fusemfs "${DEVICE_ARG}" "${MOUNTPOINT}"
+/System/Library/Filesystems/fusefs_mfs.fs/Contents/Resources/fusemfs "${DEVICE_ARG}" "${MOUNTPOINT}"

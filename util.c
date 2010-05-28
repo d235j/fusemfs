@@ -43,7 +43,7 @@ int probe (const char *device, int removable, int readonly) {
 
 int mount (const char *device, const char *mountpoint) {
 	char *cmd;
-	asprintf(&cmd, "/System/Library/Filesystems/fusemfs.fs/Contents/Resources/fusemfs \"%s\" \"%s\"", device, mountpoint);
+	asprintf(&cmd, "/System/Library/Filesystems/fusefs_mfs.fs/Contents/Resources/fusemfs \"%s\" \"%s\"", device, mountpoint);
 	int ret = system(cmd);
 	free(cmd);
 	return ret?FSUR_IO_FAIL:FSUR_IO_SUCCESS;

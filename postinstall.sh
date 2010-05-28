@@ -7,4 +7,4 @@
 # Copyright 2010 namedfork.net. All rights reserved.
 
 
-ln -fs /System/Library/Filesystems/fusemfs.fs/Contents/Resources/fusemfs /sbin/mount_fusemfs
+ln -fs /System/Library/Filesystems/fusefs_mfs.fs/Contents/Resources/mount_fusefs_mfs /sbin/mount_fusefs_mfs

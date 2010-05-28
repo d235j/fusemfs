@@ -9,7 +9,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>fusemfs</string>
+	<string>fusefs_mfs</string>
 	<key>CFBundlePackageType</key>
 	<string>fs  </string>
 	<key>CFBundleShortVersionString</key>
